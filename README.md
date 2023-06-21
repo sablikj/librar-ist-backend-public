@@ -1,74 +1,68 @@
-# The Api 
+# API for LibrarIST android app
 ## Prerequisite to run the api locally
-#install libs
+### Install libraries
 
-pip install flask-restful
+`pip install flask-restful`
 
-pip install SQLAlchemy Flask-SQLAlchemy
+`pip install SQLAlchemy Flask-SQLAlchemy`
 
-pip install virtualenv
+`pip install virtualenv`
 
-pip install flask flask-jsonpify flask-sqlalchemy
+`pip install flask flask-jsonpify flask-sqlalchemy`
 
-## Create virtual environment
+### Create virtual environment
 
-virtualenv venv
+`virtualenv venv`
 
-source venv/bin/activate
+`source venv/bin/activate`
 
-pip freeze
+`pip freeze`
 
-## Connect to db
-#I am using SQLlite , you can download easy db editor/viewer from https://sqlitebrowser.org/
+### Connect to db
+#I am using SQLlite, you can download easy db editor/viewer from https://sqlitebrowser.org/
 
-sqlite3 libraist.db
+`sqlite3 libraist.db`
 
-##  Run
-#in another terminal
+###  Run
+`flask --app server run`
 
-flask --app server run
+#### to start the server on the background
 
-to start the server on the background
-
-      FLASK_APP=server.py nohup flask run --host=0.0.0.0 > log.txt 2>&1 & 
-
-to stop the process
-      kill 'number of process printed on terminal'
+`FLASK_APP=server.py nohup flask run --host=0.0.0.0 > log.txt 2>&1`
 
 ## End points
-Connect to tecnico VPN if you work from home -> https://si.tecnico.ulisboa.pt/servicos/redes-e-conetividade/vpn/
 
-## GET requests
-### Get all books
+### GET requests
+#### Get all books
 http://100.68.28.175:5000 **/books** -- to get all books
 
 http://100.68.28.175:5000 **/books/metered** - to get all books for metered connection
 
-### Get all libraries
+#### Get all libraries
 http://100.68.28.175:5000 **/libs**  - to get all libraries
 
 http://100.68.28.175:5000 **/libs/metered**  - get libraries for metered connection
 
-### Get all books in library
+#### Get all books in library
 http://100.68.28.175:5000 **/books_in_library/<library_id>** - get all books in library
 
-### Get available books in library
+#### Get available books in library
 http://100.68.28.175:5000 **/available_books_in_library/<library_id>** - get available books in library
 
-### Get libraries by book title / barcode
+#### Get libraries by book title / barcode
 http://100.68.28.175:5000 **/get_libraries_by_book_title** ? title = %22 name %20 name %22
 
 http://100.68.28.175:5000 **/get_libraries_by_book_barcode** ? barcode = %22 barcode %22
 
-### Get library's attributes by name
+#### Get library's attributes by name
 http://100.68.28.175:5000 **/get_library_by_name** ? name = %22 name %20 name %22.  // %20 - space;  %22 - quotes symbol
 
-### Get book's attributes by barcode 
+#### Get book's attributes by barcode 
 http://100.68.28.175:5000 **/get_book_by_barcode** ? barcode = %22 barcode %22
 
 http://100.68.28.175:5000 **/get_book_by_title** ? title = %22 name %20 name %22
 
-### Get search result for Book title
+#### Get search result for Book title
 
 http://100.68.28.175:5000 **/search** ? search = "what" & offset = 2 & limit = 2
 
@@ -84,11 +78,11 @@ Examples:
 
       http://100.68.28.175:5000/get_libraries_by_book_barcode/?barcode=%221000%22
 
-## POST requests
+### POST requests
 
 can be made to localhost on https://reqbin.com/
 
-### Add New Book
+#### Add New Book
 Example: for 
 http://127.0.0.1:5000 **/books**
 
@@ -100,7 +94,7 @@ http://127.0.0.1:5000 **/books**
         }
         //Note: barcode is a uuid generated string, so there is no need to include it
 
-### Add New Library
+#### Add New Library
  http://100.68.28.175:5000 **/libs**
  
     {
@@ -111,7 +105,7 @@ http://127.0.0.1:5000 **/books**
      }
      //Note: id is a uuid generated string, so there is no need to include it
 
-### Edit Library
+#### Edit Library
 http://100.68.28.175:5000. **/libs/edit** ? id= %22 <library_id> %22
 
 Example:
@@ -122,7 +116,7 @@ Example:
       "location":"37.765206;-122.241636",
       "photo":""
       }
-### Check in a book - donate a book to a library 
+#### Check in a book - donate a book to a library 
 POST request
 
 http://100.68.28.175:5000 **/checkin/**  - update book availability to 1
@@ -135,14 +129,6 @@ Example for check out:
     "libraryId":""
     }
     
-### Check out a book - take a book from library
+#### Check out a book - take a book from library
 PUT request
-http://100.68.28.175:5000 **/checkout? barcode= & libraryId= & id= **  - update book availability to 0
-
-
-    
-    
- ## Locally
- 
- Same but on this ip address: http://127.0.0.1:5000/
-    
+http://100.68.28.175:5000 **/checkout? barcode= & libraryId= & id= **  - update book availability to 0   
