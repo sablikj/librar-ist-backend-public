@@ -1,4 +1,5 @@
 # API for LibrarIST android app
+* Backend for LibrarIST android app developed for CMU course at IST Lisbon. Repository for the app can be found [here](https://github.com/sablikj/librar-ist).
 ## Prerequisite to run the api locally
 ### Install libraries
 
